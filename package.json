@@ -1,0 +1,29 @@
+{
+  "name": "node_social_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtdn12/social-Node-Api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mtdn12/social-Node-Api/issues"
+  },
+  "homepage": "https://github.com/mtdn12/social-Node-Api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.5.14",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}
