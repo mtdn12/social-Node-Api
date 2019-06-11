@@ -1,30 +1,34 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const morgan = require('morgan')
-const expressValidator = require('express-validator')
-const bodyParser = require('body-parser')
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const morgan = require("morgan");
+const expressValidator = require("express-validator");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
-const config =  require('./config/index')
+const config = require("./config/index");
 // Import routes
-const postRoutes = require('./routes/post')
+const postRoutes = require("./routes/post");
+const authRoutes = require("./routes/auth");
 
-mongoose.connect(config.MONGO_URI, {useNewUrlParser: true}).then(() => {
-    console.log("DB Connected")
-})
-mongoose.connection.on('error', err => {
-    console.log(`DB connection error: ${err.message}`)
-})
+mongoose.connect(config.MONGO_URI, { useNewUrlParser: true }).then(() => {
+  console.log("DB Connected");
+});
+mongoose.connection.on("error", err => {
+  console.log(`DB connection error: ${err.message}`);
+});
 
 // Middleware
-app.use(morgan('dev'))
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(expressValidator())
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(expressValidator());
 
-app.use("/",postRoutes)
+app.use("/", postRoutes);
+app.use("/", authRoutes);
 
-const PORT = config.PORT || 8080
+const PORT = config.PORT || 8080;
 
 app.listen(PORT, () => {
-    console.log(`App run on port ${PORT}`)
-})
+  console.log(`App run on port ${PORT}`);
+});
