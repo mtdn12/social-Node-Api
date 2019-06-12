@@ -10,6 +10,7 @@ const config = require("./config/index");
 // Import routes
 const postRoutes = require("./routes/post");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 mongoose.connect(config.MONGO_URI, { useNewUrlParser: true }).then(() => {
   console.log("DB Connected");
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 app.use("/", postRoutes);
 app.use("/", authRoutes);
+app.use("/", userRoutes);
 app.use(function(err, req, res, next) {
   if (err.name === "UnauthorizedError") {
     return res.status(401).json({
