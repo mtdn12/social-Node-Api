@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const _ = require("lodash");
+const jwt = require("jsonwebtoken");
 
 const userById = async (req, res, next, id) => {
   try {

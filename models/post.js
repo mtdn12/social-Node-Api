@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -13,9 +14,20 @@ const postSchema = new mongoose.Schema({
     minlength: 4,
     maxlength: 3000
   },
-  createdAt: {
+  created: {
     type: Date,
     default: Date.now
+  },
+  photo: {
+    data: Buffer,
+    contentType: String
+  },
+  postedBy: {
+    type: ObjectId,
+    ref: "Users"
+  },
+  updated: {
+    type: Date
   }
 });
 
